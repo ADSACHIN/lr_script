@@ -1,65 +1,53 @@
-# 🛡️ Security Scripting Curriculum
+# Security Scripting Curriculum
 
-An interactive, comprehensive cybersecurity learning platform covering malware analysis, reverse engineering, detection engineering, and security scripting.
+A React + Vite security scripting curriculum application that covers malware analysis, reverse engineering, detection engineering, cloud security, threat intelligence, and ethical labs.
 
-## 🌐 Live Demo
+This repository has been prepared for deployment to GitHub at `https://github.com/ADSACHIN/lr_script.git`.
 
-**[View Curriculum →](https://adsachin.github.io/security-scripting-curriculum/)**
+## Project structure
 
-## 📚 Modules
+- `src/` — React application source files
+- `public/` — static assets served by Vite
+- `package.json` — project dependencies and scripts
+- `vite.config.js` — Vite configuration
 
-| # | Module | Description |
-|---|--------|-------------|
-| 🏠 | Full Curriculum | Complete curriculum overview |
-| 💻 | Interactive Scripting | Hands-on Bash/Python/PowerShell for security |
-| 🐛 | Interactive Fundamentals | Malware fundamentals with labs |
-| 📡 | Interactive Analysis | Malware analysis techniques |
-| 🛡️ | Interactive Detection | Detection engineering & defense |
-| 📖 | Scripting Fundamentals | Security scripting foundations |
-| 🔬 | Malware Fundamentals | Malware internals deep dive |
-| 🔍 | Analysis and RE | Reverse engineering techniques |
-| 🛡️ | Detection Defense | Building detection rules |
-| 🔎 | Advanced RE | Advanced reverse engineering |
-| 🌐 | Network Forensics | Network traffic analysis |
-| ☁️ | Cloud Security | Cloud infrastructure security |
-| 📊 | Threat Intelligence | Threat intel frameworks |
-| 🤖 | LLM Security | AI/ML security considerations |
-| 🧪 | Labs & Ethics | Lab setup and ethical guidelines |
-| 📅 | 90-Day Scripting Plan | Structured daily learning path |
-| 📅 | Month 2 & 3 Details | Daily exercise breakdowns |
+## Setup
 
-## 🛠️ Tech Stack
-
-- **React** — UI framework
-- **Vite** — Build tool
-- **Lucide React** — Icons
-
-## 🚀 Getting Started
+Install dependencies:
 
 ```bash
-# Clone the repo
-git clone https://github.com/ADSACHIN/security-scripting-curriculum.git
-cd security-scripting-curriculum
-
-# Install dependencies
 npm install
+```
 
-# Start dev server
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-## 📦 Build & Deploy
+Open the URL shown in the terminal, usually `http://127.0.0.1:5173`.
 
-Auto-deploys to GitHub Pages via GitHub Actions on every push to `main`.
+## Build for production
 
 ```bash
-# Manual build
 npm run build
+```
 
-# Preview production build
+Preview the production build:
+
+```bash
 npm run preview
 ```
 
-## 📄 License
+## Git deployment
 
-MIT
+Push the `main` branch to GitHub:
+
+```bash
+git push -u origin main
+```
+
+## Notes
+
+- `dist/` and `node_modules/` are ignored via `.gitignore`.
+- Duplicate or legacy source files have been removed from the tracked repository.
