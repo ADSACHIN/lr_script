@@ -47,6 +47,15 @@ Push the `main` branch to GitHub:
 git push -u origin main
 ```
 
+## Vercel deployment
+
+This project can be deployed to Vercel as a static Vite app.
+
+- Build command: `npm run build`
+- Output directory: `dist`
+
+Connect the `lr_script` repository to Vercel and it will build automatically.
+
 ## Notes
 
 - `dist/` and `node_modules/` are ignored via `.gitignore`.
