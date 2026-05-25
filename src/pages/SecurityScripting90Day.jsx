@@ -1,12 +1,5 @@
 import { useState, useRef } from "react";
-
-const C = {
-  bg:"#020508", bg2:"#040b12", bg3:"#071020",
-  border:"#0a1e35", dim:"#2a5070", bright:"#b8d8f8",
-  blue:"#00aaff", cyan:"#00ffcc", green:"#44ff88",
-  amber:"#ffaa00", red:"#ff3355", purple:"#aa66ff",
-  orange:"#ff7700", pink:"#ff66aa", white:"#ddeeff",
-};
+import { legacyPalette as C } from "../theme/securityTheme.js";
 
 /* ═══════════════════════════════════════════════════════
    90-DAY ENTERPRISE SECURITY SCRIPTING CURRICULUM
@@ -894,7 +887,7 @@ const PROJECTS = [
 function CodeSnip({ code, lang }) {
   const lc = {BASH:C.cyan,PYTHON:C.green,POWERSHELL:C.purple,ALL:C.blue,"PYTHON+BASH":C.amber,"PS+Python":C.purple}[lang]||C.blue;
   return (
-    <pre style={{background:"#020810",border:`1px solid ${C.border}`,borderLeft:`3px solid ${lc}`,borderRadius:3,
+    <pre style={{background:C.bg2,border:`1px solid ${C.border}`,borderLeft:`3px solid ${lc}`,borderRadius:3,
       padding:"10px 12px",color:lc,fontSize:10,fontFamily:"'Fira Code','Courier New',monospace",
       whiteSpace:"pre-wrap",wordBreak:"break-word",margin:"8px 0",lineHeight:1.6}}>
       {code}
@@ -977,7 +970,7 @@ function DayCard({ d, compact=false }) {
     <div style={{border:`1px solid ${open?langC+"44":C.border}`,borderRadius:4,marginBottom:5}}>
       <div onClick={()=>setOpen(!open)} style={{padding:"8px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:8,background:open?langC+"08":C.bg2}}>
         <span style={{background:langC+"22",color:langC,fontSize:8,padding:"1px 6px",borderRadius:2,minWidth:60,textAlign:"center",fontFamily:"'Courier New',monospace",fontWeight:700}}>{d.lang}</span>
-        <span style={{color:"#1a4060",fontSize:9,minWidth:40,fontFamily:"'Courier New',monospace"}}>DAY {d.day}</span>
+        <span style={{color:C.dim,fontSize:9,minWidth:40,fontFamily:"'Courier New',monospace"}}>DAY {d.day}</span>
         <span style={{color:C.bright,fontSize:11,fontFamily:"'Courier New',monospace",flex:1}}>{d.title}</span>
         <span style={{color:C.dim,fontSize:10}}>{open?"▲":"▼"}</span>
       </div>
@@ -1009,7 +1002,7 @@ export default function Curriculum() {
       backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,20,40,0.05) 3px,rgba(0,20,40,0.05) 4px)"}}>
 
       {/* HEADER */}
-      <div style={{background:"#000",borderBottom:`2px solid ${C.blue}44`,padding:"12px 22px",display:"flex",alignItems:"center",gap:14}}>
+      <div style={{background:C.bg,borderBottom:`2px solid ${C.blue}44`,padding:"12px 22px",display:"flex",alignItems:"center",gap:14}}>
         <div style={{background:C.blue+"22",border:`1px solid ${C.blue}66`,borderRadius:4,padding:"5px 12px",color:C.blue,fontSize:14,fontWeight:700,letterSpacing:"0.15em"}}>90D</div>
         <div>
           <div style={{color:C.bright,fontSize:14,fontWeight:700,letterSpacing:"0.08em"}}>ENTERPRISE SECURITY SCRIPTING CURRICULUM</div>
@@ -1026,13 +1019,13 @@ export default function Curriculum() {
       </div>
 
       {/* TABS */}
-      <div style={{background:"#000",borderBottom:`1px solid ${C.border}`,display:"flex",overflowX:"auto"}}>
+      <div style={{background:C.bg,borderBottom:`1px solid ${C.border}`,display:"flex",overflowX:"auto"}}>
         {TABS.map(t=>(
           <button key={t.id} onClick={()=>setTab(t.id)} style={{
             background:tab===t.id?C.bg3:"transparent",border:"none",
             borderBottom:tab===t.id?`2px solid ${C.blue}`:"2px solid transparent",
             borderTop:"2px solid transparent",
-            color:tab===t.id?C.blue:"#1a3a50",
+            color:tab===t.id?C.blue:C.dim,
             padding:"10px 16px",cursor:"pointer",fontSize:10,letterSpacing:"0.07em",
             fontFamily:"'Courier New',monospace",fontWeight:700,display:"flex",alignItems:"center",gap:7,whiteSpace:"nowrap"}}>
             <span>{t.icon}</span>{t.label}
@@ -1369,9 +1362,9 @@ def get_file_hash(filepath):
                 <div style={{padding:"12px 14px",background:C.bg}}>
                   <p style={{color:C.dim,fontSize:11,fontFamily:"'Courier New',monospace",marginBottom:10,lineHeight:1.6}}>{drill.desc}</p>
                   <CodeSnip code={drill.code} lang={drill.lang}/>
-                  <div style={{marginTop:10,padding:"8px 12px",background:"#001200",border:`1px solid ${C.green}33`,borderRadius:3}}>
+                  <div style={{marginTop:10,padding:"8px 12px",background:"rgba(0, 216, 96, 0.1)",border:`1px solid ${C.green}33`,borderRadius:3}}>
                     <div style={{color:C.green,fontSize:9,letterSpacing:"0.1em",marginBottom:4}}>FIX APPROACH</div>
-                    <div style={{color:"#88cc88",fontSize:11,fontFamily:"'Courier New',monospace"}}>{drill.fix}</div>
+                    <div style={{color:C.green,fontSize:11,fontFamily:"'Courier New',monospace"}}>{drill.fix}</div>
                   </div>
                 </div>
               </div>
@@ -1438,7 +1431,7 @@ def get_file_hash(filepath):
 
       </div>
 
-      <div style={{background:"#000",borderTop:`1px solid ${C.border}`,padding:"5px 22px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
+      <div style={{background:C.bg,borderTop:`1px solid ${C.border}`,padding:"5px 22px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
         <span>90-DAY ENTERPRISE SECURITY SCRIPTING CURRICULUM</span>
         <span style={{color:C.blue+"55"}}>22 COMPONENTS/DAY · 20 PROJECTS · CAPSTONE: SENTRY PLATFORM</span>
       </div>

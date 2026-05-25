@@ -1,17 +1,10 @@
 import { useState } from "react";
+import { legacyPalette as C } from "../theme/securityTheme.js";
 
 /* ═══════════════════════════════════════════════════════════
    90-DAY SECURITY SCRIPTING MASTERY PLAN
    Aesthetic: Electric blue / phosphor green industrial terminal
    ═══════════════════════════════════════════════════════════ */
-
-const C = {
-  bg:"#030508", bg2:"#060a10", bg3:"#0a1020",
-  border:"#0a1a30", dim:"#2a4a6a", bright:"#aad4ff",
-  blue:"#00aaff", blue2:"#0066cc", cyan:"#00ffcc",
-  green:"#44ff88", amber:"#ffaa00", red:"#ff3355",
-  purple:"#aa66ff", white:"#cce8ff",
-};
 
 const TOOLS = [
   { name:"Ubuntu 24.04", role:"Primary OS", icon:"🐧", color:C.amber },
@@ -1276,7 +1269,7 @@ function DayCard({ d }) {
         <span style={{marginLeft:"auto",color:C.dim,fontSize:10}}>{open?"▲":"▼"}</span>
       </div>
       {open&&(
-        <div style={{padding:"12px 14px",background:"#040810",borderTop:`1px solid ${C.border}`}}>
+        <div style={{padding:"12px 14px",background:C.bg2,borderTop:`1px solid ${C.border}`}}>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
             {[
               {label:"CONCEPT",   text:d.concept},
@@ -1296,7 +1289,7 @@ function DayCard({ d }) {
           </div>
           <div>
             <div style={{color:C.amber,fontSize:8,letterSpacing:"0.12em",marginBottom:4}}>CODE EXAMPLE</div>
-            <pre style={{background:"#020508",border:`1px solid ${C.border}`,borderLeft:`3px solid ${langC}`,borderRadius:3,padding:"10px 12px",color:langC,fontSize:10,fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",wordBreak:"break-word",margin:0,lineHeight:1.6}}>
+            <pre style={{background:C.bg,border:`1px solid ${C.border}`,borderLeft:`3px solid ${langC}`,borderRadius:3,padding:"10px 12px",color:langC,fontSize:10,fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",wordBreak:"break-word",margin:0,lineHeight:1.6}}>
               {d.code}
             </pre>
           </div>
@@ -1324,7 +1317,7 @@ function WeekBlock({ week: w }) {
             <div style={{color:w.color,fontSize:9,letterSpacing:"0.12em",marginBottom:4}}>WEEK FOCUS</div>
             <div style={{color:C.dim,fontSize:11,fontFamily:"'Courier New',monospace"}}>{w.focus}</div>
           </div>
-          <div style={{marginBottom:14,padding:"8px 12px",background:"#050a15",border:`1px solid ${w.color}33`,borderRadius:3}}>
+          <div style={{marginBottom:14,padding:"8px 12px",background:C.bg3,border:`1px solid ${w.color}33`,borderRadius:3}}>
             <div style={{color:C.amber,fontSize:9,letterSpacing:"0.12em",marginBottom:4}}>WEEKLY CHALLENGE 🏆</div>
             <div style={{color:C.white,fontSize:11,fontFamily:"'Courier New',monospace",lineHeight:1.5}}>{w.challenge}</div>
           </div>
@@ -1376,7 +1369,7 @@ export default function ScriptingPlan() {
       backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,20,40,0.05) 3px,rgba(0,20,40,0.05) 4px)"}}>
 
       {/* HEADER */}
-      <div style={{background:"#000",borderBottom:`2px solid ${C.blue}33`,padding:"14px 24px",display:"flex",alignItems:"center",gap:16}}>
+      <div style={{background:C.bg,borderBottom:`2px solid ${C.blue}33`,padding:"14px 24px",display:"flex",alignItems:"center",gap:16}}>
         <div style={{background:C.blue+"22",border:`1px solid ${C.blue}55`,borderRadius:4,padding:"6px 14px",color:C.blue,fontSize:14,fontWeight:700,letterSpacing:"0.15em"}}>90D</div>
         <div>
           <div style={{color:C.bright,fontSize:15,fontWeight:700,letterSpacing:"0.08em"}}>SECURITY SCRIPTING MASTERY PLAN</div>
@@ -1393,13 +1386,13 @@ export default function ScriptingPlan() {
       </div>
 
       {/* TABS */}
-      <div style={{background:"#000",borderBottom:`1px solid ${C.border}`,display:"flex"}}>
+      <div style={{background:C.bg,borderBottom:`1px solid ${C.border}`,display:"flex"}}>
         {TABS.map(t=>(
           <button key={t.id} onClick={()=>setActiveTab(t.id)} style={{
             background:activeTab===t.id?C.bg3:"transparent",border:"none",
             borderBottom:activeTab===t.id?`2px solid ${C.blue}`:"2px solid transparent",
             borderTop:"2px solid transparent",
-            color:activeTab===t.id?C.blue:"#1a3050",
+            color:activeTab===t.id?C.blue:C.dim,
             padding:"10px 18px",cursor:"pointer",fontSize:10,letterSpacing:"0.07em",
             fontFamily:"'Courier New',monospace",fontWeight:700,display:"flex",alignItems:"center",gap:7}}>
             <span>{t.icon}</span>{t.label}
@@ -1528,7 +1521,7 @@ cd ~/workspace/security-toolkit && git init`}
           <div>
             <SectionHeader label="DEBUGGING" title="Common Errors & Fixes" color={C.red}/>
             <div style={{border:`1px solid ${C.border}`,borderRadius:5,overflow:"hidden"}}>
-              <div style={{background:"#0a0508",borderBottom:`1px solid ${C.border}`,display:"grid",gridTemplateColumns:"1fr 1fr 80px"}}>
+              <div style={{background:C.bg2,borderBottom:`1px solid ${C.border}`,display:"grid",gridTemplateColumns:"1fr 1fr 80px"}}>
                 {["ERROR","FIX","LANG"].map((h,i)=>(
                   <div key={i} style={{padding:"7px 12px",color:C.red,fontSize:9,letterSpacing:"0.1em",borderRight:i<2?`1px solid ${C.border}`:"none"}}>{h}</div>
                 ))}
@@ -1674,7 +1667,7 @@ cd ~/workspace/security-toolkit && git init`}
         )}
       </div>
 
-      <div style={{background:"#000",borderTop:`1px solid ${C.border}`,padding:"5px 24px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
+      <div style={{background:C.bg,borderTop:`1px solid ${C.border}`,padding:"5px 24px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
         <span>90-DAY SECURITY SCRIPTING MASTERY — BASH · PYTHON · POWERSHELL</span>
         <span style={{color:C.blue+"66"}}>2-3 HOURS/DAY · 50+ SCRIPTS · 15+ PROJECTS · 1 CAPSTONE PLATFORM</span>
       </div>

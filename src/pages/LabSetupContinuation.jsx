@@ -1,12 +1,5 @@
 import { useState, useRef } from "react";
-
-const C = {
-  bg:"#020508", bg2:"#040b12", bg3:"#071020",
-  border:"#0a1e35", dim:"#2a5070", bright:"#b8d8f8",
-  blue:"#00aaff", cyan:"#00ffcc", green:"#44ff88",
-  amber:"#ffaa00", red:"#ff3355", purple:"#aa66ff",
-  orange:"#ff7700", white:"#ddeeff",
-};
+import { legacyPalette as C } from "../theme/securityTheme.js";
 
 /* ═══════════════════════════════════════════════════════
    LAB SETUP + ENVIRONMENT BOOTSTRAP + CURRICULUM CONT.
@@ -1231,7 +1224,7 @@ const CHECKLIST = [
 function Code({ code, lang }) {
   const lc = {BASH:C.cyan,PYTHON:C.green,POWERSHELL:C.purple,ALL:C.blue,"BASH+PYTHON":C.amber}[lang]||C.blue;
   return (
-    <pre style={{background:"#020810",border:`1px solid ${C.border}`,borderLeft:`3px solid ${lc}`,
+    <pre style={{background:C.bg2,border:`1px solid ${C.border}`,borderLeft:`3px solid ${lc}`,
       borderRadius:3,padding:"10px 12px",color:lc,fontSize:10,
       fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",
       wordBreak:"break-word",margin:"8px 0",lineHeight:1.6}}>{code}</pre>
@@ -1245,12 +1238,12 @@ function DayRow({ d }) {
     <div style={{border:`1px solid ${open?lc+"44":C.border}`,borderRadius:4,marginBottom:5}}>
       <div onClick={()=>setOpen(!open)} style={{padding:"8px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:8,background:open?lc+"08":C.bg2}}>
         <span style={{background:lc+"22",color:lc,fontSize:8,padding:"1px 5px",borderRadius:2,minWidth:56,textAlign:"center",fontFamily:"'Courier New',monospace",fontWeight:700}}>{d.lang}</span>
-        <span style={{color:"#1a4060",fontSize:9,minWidth:40,fontFamily:"'Courier New',monospace"}}>DAY {d.day}</span>
+        <span style={{color:C.dim,fontSize:9,minWidth:40,fontFamily:"'Courier New',monospace"}}>DAY {d.day}</span>
         <span style={{color:C.bright,fontSize:11,fontFamily:"'Courier New',monospace",flex:1}}>{d.title}</span>
         <span style={{color:C.dim}}>{open?"▲":"▼"}</span>
       </div>
       {open&&(
-        <div style={{padding:"12px 14px",background:"#020810",borderTop:`1px solid ${C.border}`}}>
+        <div style={{padding:"12px 14px",background:C.bg2,borderTop:`1px solid ${C.border}`}}>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
             <div>
               <div style={{color:lc,fontSize:8,letterSpacing:"0.1em",marginBottom:4}}>CONCEPTS</div>
@@ -1291,7 +1284,7 @@ export default function LabSetup() {
       backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,20,40,0.05) 3px,rgba(0,20,40,0.05) 4px)"}}>
 
       {/* HEADER */}
-      <div style={{background:"#000",borderBottom:`2px solid ${C.blue}44`,padding:"10px 22px",display:"flex",alignItems:"center",gap:14}}>
+      <div style={{background:C.bg,borderBottom:`2px solid ${C.blue}44`,padding:"10px 22px",display:"flex",alignItems:"center",gap:14}}>
         <div style={{background:C.green+"22",border:`1px solid ${C.green}66`,borderRadius:4,padding:"4px 12px",color:C.green,fontSize:12,fontWeight:700,letterSpacing:"0.12em"}}>LAB</div>
         <div>
           <div style={{color:C.bright,fontSize:13,fontWeight:700,letterSpacing:"0.08em"}}>LAB SETUP + ENVIRONMENT BOOTSTRAP + CURRICULUM CONTINUATION</div>
@@ -1300,13 +1293,13 @@ export default function LabSetup() {
       </div>
 
       {/* TABS */}
-      <div style={{background:"#000",borderBottom:`1px solid ${C.border}`,display:"flex",overflowX:"auto"}}>
+      <div style={{background:C.bg,borderBottom:`1px solid ${C.border}`,display:"flex",overflowX:"auto"}}>
         {TABS.map(t=>(
           <button key={t.id} onClick={()=>setTab(t.id)} style={{
             background:tab===t.id?C.bg3:"transparent",border:"none",
             borderBottom:tab===t.id?`2px solid ${C.blue}`:"2px solid transparent",
             borderTop:"2px solid transparent",
-            color:tab===t.id?C.blue:"#1a3a50",
+            color:tab===t.id?C.blue:C.dim,
             padding:"9px 14px",cursor:"pointer",fontSize:10,letterSpacing:"0.07em",
             fontFamily:"'Courier New',monospace",fontWeight:700,
             display:"flex",alignItems:"center",gap:6,whiteSpace:"nowrap"}}>
@@ -1723,7 +1716,7 @@ code --install-extension ms-python.python \\
 
       </div>
 
-      <div style={{background:"#000",borderTop:`1px solid ${C.border}`,padding:"5px 22px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
+      <div style={{background:C.bg,borderTop:`1px solid ${C.border}`,padding:"5px 22px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
         <span>LAB SETUP + CONTINUATION — SECURITY SCRIPTING CURRICULUM</span>
         <span style={{color:C.blue+"55"}}>5 INSTALL SCRIPTS · WORKSPACE · VS CODE · WEEKS 3-8 · MONTHS 2-3 · CHECKLIST</span>
       </div>

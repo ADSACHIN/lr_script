@@ -1,12 +1,5 @@
 import { useState, useRef } from "react";
-
-const C = {
-  bg:"#040208", bg2:"#07030d", bg3:"#0b0516",
-  border:"#1a0835", dim:"#5a3575", bright:"#e8ccff",
-  purple:"#aa55ff", violet:"#8844dd", cyan:"#44ddff",
-  green:"#44ff88", amber:"#ffaa00", red:"#ff3355",
-  pink:"#ff55cc", blue:"#4499ff", white:"#ddc8ff",
-};
+import { legacyPalette as C } from "../theme/securityTheme.js";
 
 /* ═══════════════════════════════════════════════════
    MONTH 2 — SECURITY ENGINEERING: RED + BLUE TEAM
@@ -915,7 +908,7 @@ def detect_anomalies(events: list[dict]):
 function CodeBlock({ code, lang }) {
   const lc = {PYTHON:C.green,BASH:C.cyan,"BASH+PYTHON":C.amber,POWERSHELL:C.purple,ALL:C.blue}[lang]||C.purple;
   return (
-    <pre style={{background:"#040210",border:`1px solid ${C.border}`,borderLeft:`3px solid ${lc}`,
+    <pre style={{background:C.bg2,border:`1px solid ${C.border}`,borderLeft:`3px solid ${lc}`,
       borderRadius:3,padding:"10px 12px",color:lc,fontSize:10,
       fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",
       wordBreak:"break-word",margin:"8px 0",lineHeight:1.6}}>
@@ -990,7 +983,7 @@ function DayCard({ d }) {
     <div style={{border:`1px solid ${open?lc+"44":C.border}`,borderRadius:4,marginBottom:5}}>
       <div onClick={()=>setOpen(!open)} style={{padding:"8px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:8,background:open?lc+"08":C.bg2}}>
         <span style={{background:lc+"22",color:lc,fontSize:8,padding:"1px 5px",borderRadius:2,minWidth:60,textAlign:"center",fontFamily:"'Courier New',monospace",fontWeight:700}}>{d.lang}</span>
-        <span style={{color:"#2a0850",fontSize:9,minWidth:40,fontFamily:"'Courier New',monospace"}}>DAY {d.day}</span>
+        <span style={{color:C.dim,fontSize:9,minWidth:40,fontFamily:"'Courier New',monospace"}}>DAY {d.day}</span>
         <span style={{color:C.bright,fontSize:11,fontFamily:"'Courier New',monospace",flex:1}}>{d.title}</span>
         <span style={{color:C.dim}}>{open?"▲":"▼"}</span>
       </div>
@@ -1045,7 +1038,7 @@ export default function Month2Detail() {
     <div style={{background:C.bg,minHeight:"100vh",color:C.dim,fontFamily:"'Courier New',monospace",display:"flex",flexDirection:"column",
       backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(40,0,80,0.04) 3px,rgba(40,0,80,0.04) 4px)"}}>
 
-      <div style={{background:"#000",borderBottom:`2px solid ${C.purple}44`,padding:"10px 22px",display:"flex",alignItems:"center",gap:14}}>
+      <div style={{background:C.bg,borderBottom:`2px solid ${C.purple}44`,padding:"10px 22px",display:"flex",alignItems:"center",gap:14}}>
         <div style={{background:C.purple+"22",border:`1px solid ${C.purple}66`,borderRadius:4,padding:"4px 12px",color:C.purple,fontSize:12,fontWeight:700,letterSpacing:"0.12em"}}>M2</div>
         <div>
           <div style={{color:C.bright,fontSize:13,fontWeight:700,letterSpacing:"0.08em"}}>MONTH 2 — SECURITY ENGINEERING: RED + BLUE TEAM</div>
@@ -1083,7 +1076,7 @@ export default function Month2Detail() {
         {WEEKS.map(w=><WeekBlock key={w.id} w={w}/>)}
       </div>
 
-      <div style={{background:"#000",borderTop:`1px solid ${C.border}`,padding:"5px 22px",display:"flex",justifyContent:"space-between",fontSize:9,color:"#2a0850"}}>
+      <div style={{background:C.bg,borderTop:`1px solid ${C.border}`,padding:"5px 22px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
         <span>MONTH 2 — SECURITY ENGINEERING DAILY CURRICULUM</span>
         <span style={{color:C.purple+"44"}}>WEEKS 5-8 · DAYS 29-56 · 22 COMPONENTS/DAY</span>
       </div>

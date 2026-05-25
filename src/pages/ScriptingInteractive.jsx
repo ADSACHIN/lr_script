@@ -1,11 +1,5 @@
 import { useState, useRef } from "react";
-
-const C = {
-  amber: "#ffb000", amberD: "#cc8800", amberF: "#ffe066",
-  bg: "#0a0700", bg2: "#0d0a00", bg3: "#110e00",
-  border: "#2a1f00", dim: "#665500", bright: "#ffd060",
-  green: "#44ff88", red: "#ff4444", cyan: "#44ccff", purple: "#cc88ff",
-};
+import { legacyPalette as C } from "../theme/securityTheme.js";
 
 /* ── DATA ── */
 const SECTIONS = {
@@ -803,19 +797,19 @@ function CodeBlock({ lines, label, lang }) {
   const lc = { bash:C.amber, python:C.cyan, powershell:C.purple }[lang] || C.amber;
   return (
     <div style={{margin:"14px 0",border:`1px solid ${C.border}`,borderRadius:4}}>
-      <div style={{background:"#0f0c00",borderBottom:`1px solid ${C.border}`,padding:"4px 12px",display:"flex",alignItems:"center",gap:8}}>
+      <div style={{background:C.bg2,borderBottom:`1px solid ${C.border}`,padding:"4px 12px",display:"flex",alignItems:"center",gap:8}}>
         <span style={{color:lc,fontSize:9,fontWeight:700,letterSpacing:"0.1em"}}>{lang.toUpperCase()}</span>
         <span style={{color:C.dim,fontSize:10}}>{label}</span>
-        <span style={{marginLeft:"auto",color:"#1a1500",fontSize:9}}>hover line → annotation</span>
+        <span style={{marginLeft:"auto",color:C.dim,fontSize:9}}>hover line → annotation</span>
       </div>
       <div style={{background:C.bg,fontFamily:"'Fira Code','Courier New',monospace",fontSize:11}}>
         {lines.map((ln,i)=>(
           <div key={i} onMouseEnter={()=>ln.n&&setHov(i)} onMouseLeave={()=>setHov(null)}
             style={{display:"grid",gridTemplateColumns:"32px 1fr",
-              background:hov===i?"#1a1400":"transparent",
+              background:hov===i?C.bg3:"transparent",
               borderLeft:hov===i?`2px solid ${lc}`:"2px solid transparent",
               cursor:ln.n?"pointer":"default"}}>
-            <span style={{color:"#2a2000",padding:"0 6px",textAlign:"right",fontSize:10,userSelect:"none",lineHeight:"1.7"}}>
+            <span style={{color:C.dim,padding:"0 6px",textAlign:"right",fontSize:10,userSelect:"none",lineHeight:"1.7"}}>
               {ln.c?i+1:""}
             </span>
             <div style={{padding:"0 10px 0 4px",lineHeight:"1.7"}}>
@@ -823,7 +817,7 @@ function CodeBlock({ lines, label, lang }) {
                 {ln.c}
               </span>
               {hov===i&&ln.n&&(
-                <div style={{marginTop:3,padding:"5px 10px",background:"#0f0c00",border:`1px solid ${lc}33`,borderLeft:`3px solid ${lc}`,borderRadius:3,color:C.bright,fontSize:11,lineHeight:1.5}}>
+                <div style={{marginTop:3,padding:"5px 10px",background:C.bg2,border:`1px solid ${lc}33`,borderLeft:`3px solid ${lc}`,borderRadius:3,color:C.bright,fontSize:11,lineHeight:1.5}}>
                   ▸ {ln.n}
                 </div>
               )}
@@ -842,7 +836,7 @@ function ConceptTable({ title, rows }) {
       <div style={{border:`1px solid ${C.border}`,borderRadius:4,overflow:"hidden"}}>
         {rows.map((row,ri)=>(
           <div key={ri} style={{display:"grid",gridTemplateColumns:`repeat(${row.length},1fr)`,
-            background:ri===0?"#0f0c00":ri%2?C.bg:C.bg2,
+            background:ri===0?C.bg2:ri%2?C.bg:C.bg2,
             borderBottom:ri<rows.length-1?`1px solid ${C.border}`:"none"}}>
             {row.map((cell,ci)=>(
               <div key={ci} style={{padding:"5px 10px",color:ri===0?C.amberF:(ci===0?C.amber:C.dim),fontSize:11,
@@ -858,29 +852,29 @@ function ConceptTable({ title, rows }) {
 
 function VulnBlock({ entries }) {
   const [open,setOpen] = useState(0);
-  const rc = {CRITICAL:"#ff2222",HIGH:C.red,MEDIUM:C.amber,LOW:C.green};
+  const rc = {CRITICAL:C.red,HIGH:C.red,MEDIUM:C.amber,LOW:C.green};
   return (
     <div style={{margin:"12px 0"}}>
       {entries.map((e,i)=>(
         <div key={i} style={{marginBottom:8,border:`1px solid ${open===i?rc[e.risk]+"44":C.border}`,borderRadius:4}}>
-          <div onClick={()=>setOpen(open===i?-1:i)} style={{padding:"8px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:10,background:open===i?"#120900":C.bg2}}>
+          <div onClick={()=>setOpen(open===i?-1:i)} style={{padding:"8px 12px",cursor:"pointer",display:"flex",alignItems:"center",gap:10,background:open===i?C.bg3:C.bg2}}>
             <span style={{background:rc[e.risk]+"22",color:rc[e.risk],fontSize:9,padding:"1px 6px",borderRadius:2,minWidth:60,textAlign:"center"}}>{e.risk}</span>
             <span style={{color:C.bright,fontSize:12}}>{e.title}</span>
             <span style={{marginLeft:"auto",color:C.dim}}>{open===i?"▲":"▼"}</span>
           </div>
           {open===i&&(
-            <div style={{padding:"12px 14px",background:"#0a0800"}}>
+            <div style={{padding:"12px 14px",background:C.bg2}}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
                 <div>
                   <div style={{color:C.red,fontSize:9,letterSpacing:"0.1em",marginBottom:5}}>❌ VULNERABLE</div>
-                  <pre style={{background:"#120000",border:"1px solid #2a0000",borderRadius:3,padding:"8px 10px",color:"#ff8888",fontSize:11,fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",wordBreak:"break-word",margin:0}}>{e.bad.join("\n")}</pre>
+                  <pre style={{background:"rgba(255, 24, 56, 0.12)",border:`1px solid ${C.red}44`,borderRadius:3,padding:"8px 10px",color:C.red,fontSize:11,fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",wordBreak:"break-word",margin:0}}>{e.bad.join("\n")}</pre>
                 </div>
                 <div>
                   <div style={{color:C.green,fontSize:9,letterSpacing:"0.1em",marginBottom:5}}>✓ SECURE</div>
-                  <pre style={{background:"#001200",border:"1px solid #002a00",borderRadius:3,padding:"8px 10px",color:"#88ff88",fontSize:11,fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",wordBreak:"break-word",margin:0}}>{e.good.join("\n")}</pre>
+                  <pre style={{background:"rgba(0, 216, 96, 0.1)",border:`1px solid ${C.green}44`,borderRadius:3,padding:"8px 10px",color:C.green,fontSize:11,fontFamily:"'Fira Code','Courier New',monospace",whiteSpace:"pre-wrap",wordBreak:"break-word",margin:0}}>{e.good.join("\n")}</pre>
                 </div>
               </div>
-              <div style={{marginTop:10,padding:"7px 10px",background:"#0f0e00",borderLeft:`3px solid ${C.amber}`,color:C.dim,fontSize:11,lineHeight:1.6}}>▸ {e.explanation}</div>
+              <div style={{marginTop:10,padding:"7px 10px",background:C.bg3,borderLeft:`3px solid ${C.amber}`,color:C.dim,fontSize:11,lineHeight:1.6}}>▸ {e.explanation}</div>
             </div>
           )}
         </div>
@@ -896,7 +890,7 @@ function LabBlock({ entries }) {
     <div style={{margin:"12px 0"}}>
       {entries.map((e,i)=>(
         <div key={i} style={{marginBottom:8,border:`1px solid ${open===i?C.green+"44":C.border}`,borderRadius:4}}>
-          <div onClick={()=>setOpen(open===i?-1:i)} style={{padding:"9px 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:12,background:open===i?"#050f05":C.bg2}}>
+          <div onClick={()=>setOpen(open===i?-1:i)} style={{padding:"9px 14px",cursor:"pointer",display:"flex",alignItems:"center",gap:12,background:open===i?C.bg3:C.bg2}}>
             <span style={{color:C.dim,fontSize:9,minWidth:48}}>{e.num}</span>
             <span style={{color:C.bright,fontSize:12}}>{e.title}</span>
             <span style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:8}}>
@@ -905,20 +899,20 @@ function LabBlock({ entries }) {
             </span>
           </div>
           {open===i&&(
-            <div style={{padding:"12px 16px",background:"#030d03"}}>
+            <div style={{padding:"12px 16px",background:C.bg2}}>
               <div style={{color:C.dim,fontSize:11,marginBottom:10,lineHeight:1.6}}>{e.objective}</div>
               <div style={{color:C.green,fontSize:9,letterSpacing:"0.1em",marginBottom:7}}>STEPS</div>
               {e.steps.map((s,si)=>(
                 <div key={si} style={{display:"flex",gap:8,marginBottom:4}}>
                   <span style={{color:C.amber,minWidth:18,fontSize:11}}>{si+1}.</span>
-                  <span style={{color:"#88aa88",fontSize:11,fontFamily:"'Fira Code','Courier New',monospace"}}>{s}</span>
+                  <span style={{color:C.dim,fontSize:11,fontFamily:"'Fira Code','Courier New',monospace"}}>{s}</span>
                 </div>
               ))}
-              <div style={{padding:"7px 10px",background:"#001a00",border:`1px solid ${C.green}33`,borderRadius:3,margin:"8px 0"}}>
+              <div style={{padding:"7px 10px",background:"rgba(0, 216, 96, 0.1)",border:`1px solid ${C.green}33`,borderRadius:3,margin:"8px 0"}}>
                 <span style={{color:C.green,fontSize:9}}>EXPECTED: </span>
-                <span style={{color:"#88cc88",fontSize:11}}>{e.expected}</span>
+                <span style={{color:C.green,fontSize:11}}>{e.expected}</span>
               </div>
-              <div style={{padding:"5px 10px",background:"#0f0e00",borderLeft:`2px solid ${C.amber}`,color:C.dim,fontSize:11}}>💡 {e.tips}</div>
+              <div style={{padding:"5px 10px",background:C.bg3,borderLeft:`2px solid ${C.amber}`,color:C.dim,fontSize:11}}>💡 {e.tips}</div>
             </div>
           )}
         </div>
@@ -963,7 +957,7 @@ export default function Mod01() {
       backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px)"}}>
 
       {/* HEADER */}
-      <div style={{background:"#000",borderBottom:`2px solid ${C.amber}33`,padding:"10px 20px",display:"flex",alignItems:"center",gap:14}}>
+      <div style={{background:C.bg,borderBottom:`2px solid ${C.amber}33`,padding:"10px 20px",display:"flex",alignItems:"center",gap:14}}>
         <div style={{background:C.amber+"22",border:`1px solid ${C.amber}55`,borderRadius:3,padding:"4px 10px",color:C.amber,fontSize:12,fontWeight:700,letterSpacing:"0.12em"}}>MOD-01</div>
         <div>
           <div style={{color:C.amberF,fontSize:13,fontWeight:700,letterSpacing:"0.08em"}}>SCRIPTING FOR SECURITY</div>
@@ -975,38 +969,38 @@ export default function Mod01() {
       </div>
 
       {/* SECTION TABS */}
-      <div style={{background:"#000",borderBottom:`1px solid ${C.border}`,display:"flex"}}>
+      <div style={{background:C.bg,borderBottom:`1px solid ${C.border}`,display:"flex"}}>
         {Object.entries(SECTIONS).map(([key,s])=>(
           <button key={key} onClick={()=>goSec(key)} style={{
             background:activeSec===key?C.bg3:"transparent",border:"none",
             borderBottom:activeSec===key?`2px solid ${s.color}`:"2px solid transparent",
             borderTop:"2px solid transparent",
-            color:activeSec===key?s.color:"#3a3000",
+            color:activeSec===key?s.color:C.dim,
             padding:"9px 16px",cursor:"pointer",fontSize:11,letterSpacing:"0.08em",
             fontFamily:"'Courier New',monospace",fontWeight:700,display:"flex",alignItems:"center",gap:7}}>
             <span style={{fontSize:9,opacity:0.7}}>[{s.icon}]</span>
             {s.label}
-            <span style={{color:activeSec===key?s.color+"55":"#2a2000",fontSize:8}}>{s.lessons.length}</span>
+            <span style={{color:activeSec===key?s.color+"55":C.dim,fontSize:8}}>{s.lessons.length}</span>
           </button>
         ))}
       </div>
 
       <div style={{display:"flex",flex:1,overflow:"hidden"}}>
         {/* SIDEBAR */}
-        <div style={{width:200,minWidth:200,background:"#040300",borderRight:`1px solid ${C.border}`,padding:"14px 10px",display:"flex",flexDirection:"column",gap:3,overflowY:"auto"}}>
+        <div style={{width:200,minWidth:200,background:C.bg2,borderRight:`1px solid ${C.border}`,padding:"14px 10px",display:"flex",flexDirection:"column",gap:3,overflowY:"auto"}}>
           <div style={{color:sec.color,fontSize:9,letterSpacing:"0.12em",marginBottom:10,paddingBottom:7,borderBottom:`1px solid ${C.border}`}}>
             {sec.label} — {sec.lessons.length} TOPICS
           </div>
           {sec.lessons.map((l,i)=>(
             <button key={i} onClick={()=>goLi(i)} style={{background:activeLi===i?C.bg3:"transparent",border:activeLi===i?`1px solid ${sec.color}33`:"1px solid transparent",borderRadius:3,padding:"7px 9px",cursor:"pointer",textAlign:"left"}}>
-              <div style={{color:activeLi===i?C.bright:"#5a4a00",fontSize:11,marginBottom:3,lineHeight:1.4}}>{l.title}</div>
+              <div style={{color:activeLi===i?C.bright:C.dim,fontSize:11,marginBottom:3,lineHeight:1.4}}>{l.title}</div>
               <span style={{fontSize:8,padding:"1px 5px",borderRadius:2,background:l.tagColor+"22",color:l.tagColor}}>{l.tag}</span>
             </button>
           ))}
           <div style={{marginTop:"auto",paddingTop:14,borderTop:`1px solid ${C.border}`}}>
-            <div style={{color:"#2a2000",fontSize:9,marginBottom:7,letterSpacing:"0.1em"}}>ALL MODULES</div>
+            <div style={{color:C.dim,fontSize:9,marginBottom:7,letterSpacing:"0.1em"}}>ALL MODULES</div>
             {Object.entries(SECTIONS).map(([key,s])=>(
-              <button key={key} onClick={()=>goSec(key)} style={{display:"flex",alignItems:"center",gap:6,width:"100%",background:activeSec===key?"#0f0c00":"transparent",border:"none",color:activeSec===key?s.color:"#2a2000",padding:"4px 6px",cursor:"pointer",fontSize:9,textAlign:"left",borderRadius:2,fontFamily:"'Courier New',monospace"}}>
+              <button key={key} onClick={()=>goSec(key)} style={{display:"flex",alignItems:"center",gap:6,width:"100%",background:activeSec===key?C.bg2:"transparent",border:"none",color:activeSec===key?s.color:C.dim,padding:"4px 6px",cursor:"pointer",fontSize:9,textAlign:"left",borderRadius:2,fontFamily:"'Courier New',monospace"}}>
                 <span>[{s.icon}]</span><span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{s.label}</span>
               </button>
             ))}
@@ -1017,7 +1011,7 @@ export default function Mod01() {
         <div ref={ref} style={{flex:1,padding:"24px 28px",overflowY:"auto",background:C.bg}}>
           <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:18,fontSize:10}}>
             <span style={{color:sec.color}}>{sec.label}</span>
-            <span style={{color:"#2a2000"}}>›</span>
+            <span style={{color:C.dim}}>›</span>
             <span style={{color:C.amberD}}>{lesson.title}</span>
             <span style={{marginLeft:"auto"}}>
               <span style={{background:lesson.tagColor+"11",border:`1px solid ${lesson.tagColor}44`,color:lesson.tagColor,padding:"2px 8px",borderRadius:3,fontSize:9,letterSpacing:"0.08em"}}>{lesson.tag}</span>
@@ -1035,7 +1029,7 @@ export default function Mod01() {
       </div>
 
       {/* STATUS BAR */}
-      <div style={{background:"#000",borderTop:`1px solid ${C.border}`,padding:"5px 20px",display:"flex",justifyContent:"space-between",fontSize:9,color:"#2a2000"}}>
+      <div style={{background:C.bg,borderTop:`1px solid ${C.border}`,padding:"5px 20px",display:"flex",justifyContent:"space-between",fontSize:9,color:C.dim}}>
         <span>MOD-01 :: SCRIPTING FUNDAMENTALS FOR SECURITY</span>
         <span style={{color:C.amber+"44"}}>{sec.label} · {lesson.title.toUpperCase()}</span>
       </div>

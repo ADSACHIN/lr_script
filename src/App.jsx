@@ -41,46 +41,46 @@ const LlmSecurity = lazy(() => import("./pages/LlmSecurity.jsx"));
 /* ─── Organized lesson data with categories and descriptions ─── */
 
 const LESSONS = [
-  // Overview
-  { id: "curriculum", label: "Full Curriculum", desc: "Complete overview & roadmap", icon: Home, category: "overview", Component: MalwareCurriculum },
+  // Level 0: scope, safety, environment, and roadmap
+  { id: "curriculum", label: "Full Curriculum", desc: "Roadmap, scope, and mental model", icon: Home, category: "level0", Component: MalwareCurriculum },
+  { id: "labs", label: "Labs and Ethics", desc: "Authorization, safety, and boundaries", icon: FlaskConical, category: "level0", Component: LabsEthicsPractice },
+  { id: "lab-setup", label: "Lab Setup Continuation", desc: "Analysis VM and tooling bootstrap", icon: FlaskConical, category: "level0", Component: LabSetupContinuation },
+  { id: "scripting-mastery-plan", label: "Scripting Mastery Plan", desc: "90-day roadmap and capstone arc", icon: Terminal, category: "level0", Component: ScriptingMasteryPlan },
 
-  // Interactive Labs
-  { id: "interactive-scripting", label: "Interactive Scripting", desc: "Hands-on Bash, Python, PowerShell", icon: Terminal, category: "interactive", Component: ScriptingInteractive },
-  { id: "interactive-fundamentals", label: "Interactive Fundamentals", desc: "Malware internals with labs", icon: Bug, category: "interactive", Component: MalwareFundamentalsInteractive },
-  { id: "interactive-analysis", label: "Interactive Analysis", desc: "RE techniques & tools", icon: Radar, category: "interactive", Component: MalwareAnalysisInteractive },
-  { id: "interactive-detection", label: "Interactive Detection", desc: "YARA, Sigma, Snort rules", icon: Shield, category: "interactive", Component: DetectionDefenseInteractive },
+  // Level 1: security scripting foundations
+  { id: "scripting", label: "Scripting Fundamentals", desc: "Bash, Python, PowerShell basics", icon: Terminal, category: "level1", Component: SecurityScriptingFundamentals },
+  { id: "interactive-scripting", label: "Interactive Scripting", desc: "Guided scripting practice", icon: Terminal, category: "level1", Component: ScriptingInteractive },
+  { id: "security-scripting-90day", label: "90 Day Scripting", desc: "Daily drills for fundamentals", icon: CalendarDays, category: "level1", Component: SecurityScripting90Day },
 
-  // Core Modules
-  { id: "scripting", label: "Scripting Fundamentals", desc: "Security scripting foundations", icon: Terminal, category: "core", Component: SecurityScriptingFundamentals },
-  { id: "fundamentals", label: "Malware Fundamentals", desc: "Types, behaviors, analysis", icon: Bug, category: "core", Component: MalwareFundamentals },
-  { id: "analysis", label: "Analysis and RE", desc: "Static & dynamic analysis", icon: BookOpen, category: "core", Component: MalwareAnalysisReverseEngineering },
-  { id: "detection", label: "Detection Defense", desc: "Detection engineering patterns", icon: Shield, category: "core", Component: DetectionEngineeringDefense },
+  // Level 2: systems, platforms, and malware mental models
+  { id: "fundamentals", label: "Malware Fundamentals", desc: "Types, behaviors, lifecycle", icon: Bug, category: "level2", Component: MalwareFundamentals },
+  { id: "interactive-fundamentals", label: "Interactive Fundamentals", desc: "Malware concepts with labs", icon: Bug, category: "level2", Component: MalwareFundamentalsInteractive },
+  { id: "network-forensics", label: "Network Forensics", desc: "PCAP, traffic, protocol analysis", icon: Network, category: "level2", Component: NetworkForensics },
+  { id: "cloud-security", label: "Cloud Security", desc: "Platform security and defense basics", icon: Cloud, category: "level2", Component: CloudSecurity },
 
-  // Advanced Topics
-  { id: "advanced-re", label: "Advanced RE", desc: "Anti-analysis, packers, obfuscation", icon: Search, category: "advanced", Component: AdvancedReverseEngineering },
-  { id: "network-forensics", label: "Network Forensics", desc: "PCAP, Wireshark, traffic analysis", icon: Network, category: "advanced", Component: NetworkForensics },
-  { id: "cloud-security", label: "Cloud Security", desc: "AWS, Azure, GCP defense", icon: Cloud, category: "advanced", Component: CloudSecurity },
-  { id: "threat-intelligence", label: "Threat Intelligence", desc: "MITRE ATT&CK, IOCs, TTP mapping", icon: Radar, category: "advanced", Component: ThreatIntelligence },
-  { id: "llm-security", label: "LLM Security", desc: "AI/ML attack & defense", icon: Bot, category: "advanced", Component: LlmSecurity },
+  // Level 3: practical analysis and detection workflows
+  { id: "analysis", label: "Analysis and RE", desc: "Static and dynamic analysis workflow", icon: BookOpen, category: "level3", Component: MalwareAnalysisReverseEngineering },
+  { id: "interactive-analysis", label: "Interactive Analysis", desc: "RE techniques and tool practice", icon: Radar, category: "level3", Component: MalwareAnalysisInteractive },
+  { id: "detection", label: "Detection Defense", desc: "Detection engineering foundations", icon: Shield, category: "level3", Component: DetectionEngineeringDefense },
+  { id: "interactive-detection", label: "Interactive Detection", desc: "YARA, Sigma, and response labs", icon: Shield, category: "level3", Component: DetectionDefenseInteractive },
 
-  // Labs & Practice
-  { id: "labs", label: "Labs and Ethics", desc: "Safe lab setup & ethical guidelines", icon: FlaskConical, category: "labs", Component: LabsEthicsPractice },
-  { id: "lab-setup", label: "Lab Setup Continuation", desc: "Advanced lab environments", icon: FlaskConical, category: "labs", Component: LabSetupContinuation },
+  // Level 4: advanced security operations
+  { id: "threat-intelligence", label: "Threat Intelligence", desc: "MITRE ATT&CK, IOCs, TTP mapping", icon: Radar, category: "level4", Component: ThreatIntelligence },
+  { id: "month2-daily-detail", label: "Month 2 Daily Detail", desc: "Detection and automation buildout", icon: CalendarDays, category: "level4", Component: Month2DailyDetail },
+  { id: "advanced-re", label: "Advanced RE", desc: "Anti-analysis, packers, obfuscation", icon: Search, category: "level4", Component: AdvancedReverseEngineering },
 
-  // Learning Plans
-  { id: "scripting-mastery-plan", label: "Scripting Mastery Plan", desc: "90-day structured learning path", icon: Terminal, category: "plans", Component: ScriptingMasteryPlan },
-  { id: "security-scripting-90day", label: "90 Day Scripting", desc: "Daily exercises & projects", icon: CalendarDays, category: "plans", Component: SecurityScripting90Day },
-  { id: "month2-daily-detail", label: "Month 2 Daily Detail", desc: "Security automation focus", icon: CalendarDays, category: "plans", Component: Month2DailyDetail },
-  { id: "month3-daily-detail", label: "Month 3 Daily Detail", desc: "Advanced tooling & capstone", icon: CalendarDays, category: "plans", Component: Month3DailyDetail },
+  // Level 5: expert platform and research topics
+  { id: "month3-daily-detail", label: "Month 3 Daily Detail", desc: "Platform engineering and capstone", icon: CalendarDays, category: "level5", Component: Month3DailyDetail },
+  { id: "llm-security", label: "LLM Security", desc: "AI/ML attack and defense research", icon: Bot, category: "level5", Component: LlmSecurity },
 ];
 
 const CATEGORIES = [
-  { key: "overview", label: null },
-  { key: "interactive", label: "Interactive Labs" },
-  { key: "core", label: "Core Modules" },
-  { key: "advanced", label: "Advanced Topics" },
-  { key: "labs", label: "Labs & Practice" },
-  { key: "plans", label: "Learning Plans" },
+  { key: "level0", label: "Level 0 - Orientation" },
+  { key: "level1", label: "Level 1 - Fundamentals" },
+  { key: "level2", label: "Level 2 - Core Systems" },
+  { key: "level3", label: "Level 3 - Practical Workflows" },
+  { key: "level4", label: "Level 4 - Advanced Ops" },
+  { key: "level5", label: "Level 5 - Expert Research" },
 ];
 
 export default function App() {
